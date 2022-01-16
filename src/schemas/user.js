@@ -9,6 +9,10 @@ const user = new schema({
     email:{
         type:String,
         required:[true,'email is required']
+    },
+    password:{
+        type:String,
+        required:[true,'Password is required']
     }
 })
 
