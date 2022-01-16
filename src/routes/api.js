@@ -8,8 +8,16 @@ router.get('/',(req,res)=>{
     res.send('Welcome');
 })
 
-router.post('/register',(req,res)=>{
+router.post('/register',async(req,res)=>{
     const {name,email,password}= req.body;
+
+    const isAvailable = await users.findOne({email});
+    
+    if(isAvailable !==null){
+        res.send('This email already exist \n login instead');
+        return;
+        
+    }
     bcrypt.hash(password,10)
     .then(result=>{
         users.create(
@@ -20,6 +28,9 @@ router.post('/register',(req,res)=>{
         })
 
     })
+
+
+
 })
 
 router.post('/login',(req,res)=>{
