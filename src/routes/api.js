@@ -9,14 +9,14 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/register',async(req,res)=>{
+
     const {name,email,password}= req.body;
 
     const isAvailable = await users.findOne({email});
     
     if(isAvailable !==null){
-        res.send('This email already exist \n login instead');
+        res.send('This email already exist\nlogin instead');
         return;
-        
     }
     bcrypt.hash(password,10)
     .then(result=>{
@@ -28,8 +28,6 @@ router.post('/register',async(req,res)=>{
         })
 
     })
-
-
 
 })
 
