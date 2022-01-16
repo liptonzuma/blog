@@ -1,7 +1,9 @@
-PUT   http://localhost:8080/api/61e4072347388d27ec004ec0
+POST    http://localhost:8080/api/login
 Content-Type: application/json
 
 {
-    "name":"liptonzuma"
+
+    "email":"li@gmail.com",
+    "password":"fogandgof"
 }
 

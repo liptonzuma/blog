@@ -21,6 +21,21 @@ router.post('/register',(req,res)=>{
 
     })
 })
+
+router.post('/login',(req,res)=>{
+    const {email,password} = req.body;
+    users.findOne({email})
+    .then(async(user)=>{
+        const result = await bcrypt.compare(password,user.password);
+        if(result){
+            res.send(`Welcome ${user.name}`);
+            return;
+        }
+        res.send('wrong Password')
+        
+    })
+    .catch(err=>res.send(err.message))
+})
  
 router.put('/:id',(req,res)=>{
     const {id} = req.params;
