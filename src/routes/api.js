@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt')
+
 const users = require('../schemas/user');
 
 router.get('/',(req,res)=>{
@@ -7,9 +9,17 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-    users.create(req.body)
-    .then(data=>res.send(data))
-    .catch(err=>res.send(err.message));
+    const {name,email,password}= req.body;
+    bcrypt.hash(password,10)
+    .then(result=>{
+        users.create(
+            {name,email,password:result}
+        )
+        .then(user=>{
+            res.send(user);
+        })
+
+    })
 })
  
 router.put('/:id',(req,res)=>{
