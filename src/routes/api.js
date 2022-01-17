@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 
+dotenv.config();
+
 
 const users = require('../schemas/user');
 
