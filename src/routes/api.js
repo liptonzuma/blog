@@ -22,6 +22,7 @@ router.post('/register',async(req,res)=>{
         res.send('This email already exist\nlogin instead');
         return;
     }
+    
     bcrypt.hash(password,10)
     .then(result=>{
         users.create(
