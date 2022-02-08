@@ -1,8 +1,5 @@
-POST    http://localhost:8080/api/login
-Content-Type: application/json
+GET http://localhost:8080/api/
+####
 
-{
-    "email":"li@gmail.com",
-    "password":"fogandgof"
-}
+
 

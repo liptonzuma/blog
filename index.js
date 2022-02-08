@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
+const cors = require('cors')
+
 
 const mongoose = require('mongoose')
 
@@ -13,13 +15,15 @@ const api = require('./src/routes/api');
 
 const port = process.env.PORT || 8000;
 
+
+
 app.use(express.json());
 
 
-app.use('/api',api);
+app.use('/api',cors(),api);
 
-app.get('/',(req,res)=>{
-    res.send('<h1>Welcome</h1>')
+app.get('/',cors(),(req,res)=>{
+    res.send('hello')
 });
 
 app.listen(port,()=>{

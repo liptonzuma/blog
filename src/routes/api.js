@@ -19,7 +19,7 @@ router.post('/register',async(req,res)=>{
     const isAvailable = await users.findOne({email});
     
     if(isAvailable !==null){
-        res.send('This email already exist\nlogin instead');
+        res.send('Email already exits')
         return;
     }
     
@@ -28,9 +28,6 @@ router.post('/register',async(req,res)=>{
         users.create(
             {name,email,password:result}
         )
-        .then(user=>{
-            jw
-        })
 
     })
 
